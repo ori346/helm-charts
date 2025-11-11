@@ -1,6 +1,12 @@
 # helm-charts
 
-This is a personal repository for managing and building helm charts.  These charts are often experimental.  For additional charts, please also refer to the [Red Hat Intelligent Application Practice Helm Charts](https://github.com/rh-intelligent-application-practice/helm-charts) repo.
+This is a personal repository for managing and building helm charts. These charts are often experimental. For additional charts, please also refer to the [Red Hat Intelligent Application Practice Helm Charts](https://github.com/rh-intelligent-application-practice/helm-charts) repo.
+
+## Charts Available
+
+- **mlflow-server**: MLflow tracking server with MinIO storage (MinIO is automatically installed as a dependency)
+- **minio**: Object storage for S3-compatible storage
+- And more...
 
 ## Usage
 
