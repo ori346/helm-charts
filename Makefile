@@ -62,3 +62,24 @@ status: ## Show status of deployed releases
 
 clean: uninstall ## Alias for uninstall
 
+package: ## Package all charts for repository
+	@echo "Packaging all charts..."
+	@mkdir -p packages
+	@for chart in charts/*/; do \
+		if [ -f "$$chart/Chart.yaml" ]; then \
+			chart_name=$$(basename "$$chart"); \
+			echo "Packaging $$chart_name..."; \
+			helm package "$$chart" -d packages/ || true; \
+		fi \
+	done
+	@echo "Creating index.yaml..."
+	@helm repo index packages/ --url https://ori346.github.io/helm-charts/
+	@echo "Packages created in ./packages/ directory"
+
+test-repo: package ## Test the local repository
+	@echo "Testing local repository..."
+	@helm repo add local-test ./packages
+	@helm repo update local-test
+	@echo "Repository test complete. You can now test:"
+	@echo "  helm search repo local-test"
+

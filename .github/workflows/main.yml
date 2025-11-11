@@ -14,12 +14,47 @@ jobs:
       - uses: EndBug/add-and-commit@v9 
         with:
           message: 'Automatic build of docs from GitHub Action'
+  
   release:
     needs: docs-build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v2
-      - name: Publish Helm charts
-        uses: stefanprodan/helm-gh-pages@master
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PACKAGE_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 'latest'
+
+      - name: Package charts
+        run: |
+          mkdir -p packages
+          for chart in charts/*/; do
+            if [ -f "$chart/Chart.yaml" ]; then
+              chart_name=$(basename "$chart")
+              echo "Packaging $chart_name..."
+              helm package "$chart" -d packages/
+            fi
+          done
+
+      - name: Create index
+        run: |
+          helm repo index packages/ --url https://ori346.github.io/helm-charts/
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages
+          destination_dir: .
+          keep_files: false
