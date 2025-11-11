@@ -13,9 +13,9 @@ This chart utilizes components from the Crunch Postgres Operator and OpenShift D
 To access charts from this from the cli repository add it:
 
 ```sh
-helm repo add strangiato https://strangiato.github.io/helm-charts/
+helm repo add ori346 https://ori346.github.io/helm-charts/
 helm repo update
-helm upgrade -i [release-name] strangiato/mlflow-server
+helm upgrade -i [release-name] ori346/mlflow-server
 ```
 
 To include a chart from this repository in an umbrella chart, include it in your dependencies in your `Chart.yaml` file.
@@ -33,13 +33,13 @@ appVersion: "1.16.0"
 dependencies:
   - name: "mlflow-server"
     version: "0.8.0"
-    repository: "https://strangiato.github.io/helm-charts/"
+    repository: "https://ori346.github.io/helm-charts/"
 ```
 
 ## Source Code
 
-* <https://github.com/strangiato/helm-charts/tree/main/charts/mlflow-server>
-* <https://github.com/strangiato/mlflow-server>
+* <https://github.com/ori346/helm-charts/tree/main/charts/mlflow-server>
+* <https://github.com/ori346/mlflow-server>
 
 ## Requirements
 
@@ -47,7 +47,7 @@ Kubernetes: `>= 1.21.0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://strangiato.github.io/helm-charts/ | crunchyPostgres(postgrescluster) | 5.6.0 |
+| https://ori346.github.io/helm-charts/ | crunchyPostgres(postgrescluster) | 5.6.0 |
 
 ## Values
 
@@ -125,7 +125,7 @@ When accessing MLFlow from outside of the cluster with OAuth enabled, the route 
 If you wish to run training processes from outside of the cluster that write to MLFlow you must set `enableBearerTokenAccess: true`.  This option requires additional permissions to be granted to the MLFlow Service Account which requires cluster admin privileges.  To install mlflow-server with this feature, run the following command:
 
 ```sh
-helm upgrade -i [release-name] strangiato/mlflow-server --set openshiftOauth.enableBearerTokenAccess=true
+helm upgrade -i [release-name] ori346/mlflow-server --set openshiftOauth.enableBearerTokenAccess=true
 ```
 
 Once this option is enabled you can set the following environment variable in your training environment and MLFlow will automatically pass your Bearer Token to the OpenShift OAuth Proxy and authenticate any API calls MLFlow makes to the server.

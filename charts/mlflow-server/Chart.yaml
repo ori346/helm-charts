@@ -5,8 +5,8 @@ type: application
 kubeVersion: ">= 1.21.0"
 
 sources: 
-  - https://github.com/strangiato/helm-charts/tree/main/charts/mlflow-server
-  - https://github.com/strangiato/mlflow-server
+  - https://github.com/ori346/helm-charts/tree/main/charts/mlflow-server
+  - https://github.com/ori346/mlflow-server
 
 version: 0.8.0
 appVersion: "3.4"
@@ -16,10 +16,10 @@ icon: https://avatars.githubusercontent.com/u/39938107
 dependencies:
   - name: "minio"
     version: "0.1.0"
-    repository: "https://strangiato.github.io/helm-charts/"
+    repository: "https://ori346.github.io/helm-charts/"
     condition: minio.enabled
   - name: "postgrescluster"
     alias: "crunchyPostgres"
     version: "5.6.0"
-    repository: "https://strangiato.github.io/helm-charts/"
+    repository: "https://ori346.github.io/helm-charts/"
     condition: crunchyPostgres.enabled

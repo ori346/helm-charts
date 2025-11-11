@@ -9,9 +9,9 @@ A Helm chart for Kubernetes
 To access charts from this from the cli repository add it:
 
 ```sh
-helm repo add strangiato https://strangiato.github.io/helm-charts/
+helm repo add ori346 https://ori346.github.io/helm-charts/
 helm repo update strangiato
-helm upgrade -i [release-name] strangiato/gitops-tenant
+helm upgrade -i [release-name] ori346/gitops-tenant
 ```
 
 To include a chart from this repository in an umbrella chart, include it in your dependencies in your `Chart.yaml` file.
@@ -29,7 +29,7 @@ appVersion: "1.16.0"
 dependencies:
   - name: "gitops-tenant"
     version: "0.2.0"
-    repository: "https://strangiato.github.io/helm-charts/"
+    repository: "https://ori346.github.io/helm-charts/"
 ```
 
 ## Requirements

@@ -47,7 +47,7 @@ kind: Deployment
 metadata:
   name: mlflow-server
   annotations:
-    app.openshift.io/vcs-uri: github.com/strangiato/mlflow-server
+    app.openshift.io/vcs-uri: github.com/ori346/mlflow-server
   labels:
     helm.sh/chart: mlflow-server-0.6.6
     app.kubernetes.io/name: mlflow-server
@@ -156,7 +156,7 @@ spec:
             {}
         - name: oauth-proxy
           image: "registry.redhat.io/openshift4/ose-oauth-proxy:v4.12"
-          imagePullPolicy: 
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8443
               name: oauth-proxy

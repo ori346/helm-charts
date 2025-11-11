@@ -7,7 +7,7 @@ This is a personal repository for managing and building helm charts.  These char
 To access charts from this from the cli repository add it:
 
 ```sh
-helm repo add strangiato https://strangiato.github.io/helm-charts/
+helm repo add ori346 https://ori346.github.io/helm-charts/
 ```
 
 To include a chart from this repository in an umbrella chart, include it in your dependencies in your `Chart.yaml` file.
@@ -25,5 +25,5 @@ appVersion: "1.16.0"
 dependencies:
   - name: "odh"
     version: "0.1.3"
-    repository: "https://strangiato.github.io/helm-charts/"
+    repository: "https://ori346.github.io/helm-charts/"
 ```
