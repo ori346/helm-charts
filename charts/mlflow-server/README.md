@@ -47,6 +47,7 @@ Kubernetes: `>= 1.21.0`
 
 | Repository | Name | Version |
 |------------|------|---------|
+| https://ori346.github.io/helm-charts/ | minio | 0.1.0 |
 | https://ori346.github.io/helm-charts/ | crunchyPostgres(postgrescluster) | 5.6.0 |
 
 ## Values
@@ -75,6 +76,11 @@ Kubernetes: `>= 1.21.0`
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.tls | list | `[]` |  |
+| minio | object | `{"enabled":true,"password":"minio123","size":"20Gi","userId":"minio"}` | MinIO dependency configuration MinIO will be automatically installed as a dependency when installing mlflow-server |
+| minio.enabled | bool | `true` | Enable MinIO installation (required for S3 storage) |
+| minio.password | string | `"minio123"` | MinIO root password |
+| minio.size | string | `"20Gi"` | MinIO storage size |
+| minio.userId | string | `"minio"` | MinIO root user ID |
 | nameOverride | string | `""` | String to partially override fullname template (will maintain the release name) |
 | nodeSelector | object | `{}` | Node selector for the MlFlow Server pod |
 | objectStorage.caBundle | string | `"/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"` | The CA bundle for the internal cluster certs.  Set this value to "" for AWS S3. |
