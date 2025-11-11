@@ -1,0 +1,4 @@
+minio:
+  userId: minio
+  password: minio123
+  size: 20Gi

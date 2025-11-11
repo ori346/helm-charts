@@ -3,6 +3,18 @@ nameOverride: ""
 # -- String to fully override fullname template
 fullnameOverride: ""
 
+# -- MinIO dependency configuration
+# MinIO will be automatically installed as a dependency when installing mlflow-server
+minio:
+  # -- Enable MinIO installation (required for S3 storage)
+  enabled: true
+  # -- MinIO root user ID
+  userId: minio
+  # -- MinIO root password
+  password: minio123
+  # -- MinIO storage size
+  size: 20Gi
+
 # -- replicas of MLFlow Server
 replicaCount: 1
 
